@@ -15,7 +15,7 @@
 
 	<?php }else{?>
 
-	<h2>Usted esta usando otro navegador no definido</h2>
+	<h2>Usted esta usando otro navegador diferente</h2>
 	
 	<?php }?>
 </body>
