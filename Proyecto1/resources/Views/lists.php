@@ -11,7 +11,7 @@
 			<div class="col-xs-12">
 				<?php
 					foreach ($products as $product) {
-						echo "<strong>{$product->name}</strong> - {$product->description}";
+						echo "<strong>{$product->name}</strong> - {$product->description} <br>";
 					}
 				?>
 				<a href="pdf.php">Exportar en PDF</a>
