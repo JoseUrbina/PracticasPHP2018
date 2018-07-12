@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>Document</title>
 </head>
 <body>
 	<?php	
+		$busqueda = $_GET["buscar"];
+
 		// COmpartiendo los datos de la conexion, ubicando en otro archivo
 		require "datos_conexion.php";
-
-		$NIF = '23453212E';
 
 		// Conexion de la bd
 		$conexion = mysqli_connect($db_host, $db_usuario, $db_pwd);
@@ -28,7 +28,7 @@
 		// recibe 2 parametros: 1. Conecion 2.Tipo de formato
 		mysqli_set_charset($conexion,"utf8");
 
-		$query = "SELECT * FROM DATOSPERSONALES WHERE NIF = '{$NIF}'";
+		$query = "SELECT * FROM PRODUCTO WHERE NOMBREARTICULO LIKE '%{$busqueda}%'";
 
 		$resultados = mysqli_query($conexion, $query);
 
@@ -37,8 +37,9 @@
 
 		while ($fila = mysqli_fetch_array($resultados, MYSQLI_ASSOC)) {
 			echo "<table><tr><td>";
-			echo "{$fila["NOMBRE"]}</td><td>";
-			echo "{$fila["APELLIDO"]}</td></tr></table>";
+			echo "{$fila["CODARTICULO"]}</td><td>";
+			echo "{$fila["SECCION"]}</td><td>";
+			echo "{$fila["NOMBREARTICULO"]}</td></tr></table>";
 		}	
 
 		// Cerrar la conexion de la BD
