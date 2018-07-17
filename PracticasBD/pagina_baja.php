@@ -5,15 +5,17 @@
 	<title>Document</title>
 </head>
 <body>
-	<?php	
-		$usuario = $_POST["usuario"];
-		$contra = $_POST["contra"];
-
+	<?php		
 		// COmpartiendo los datos de la conexion, ubicando en otro archivo
 		require "datos_conexion.php";
 
 		// Conexion de la bd
 		$conexion = mysqli_connect($db_host, $db_usuario, $db_pwd);
+
+		// mysqli_real_escape_string() -> usado para evitar inyeccion sql, filtrado de valores en variables
+		$usuario = mysqli_real_escape_string($conexion, $_POST["usuario"]);
+		$contra = mysqli_real_escape_string($conexion, $_POST["contra"]);
+
 
 		// SI la conexion ha fallado , entrar al if
 		if(mysqli_connect_errno())
@@ -38,7 +40,8 @@
 
 		if($resultados)
 		{
-			echo "Baja procesada";
+			if(mysqli_affected_rows($conexion) > 0)
+				echo "Baja procesada";
 		}
 
 		// Cerrar la conexion de la BD
