@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tabla js</title>
+	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/sandstone/bootstrap.min.css">
+</head>
+<body>
+	<table id="tablaP" class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Código</td>
+				<td>Nombre Completo</td>
+				<td>Activo</td>
+				<td>Opciones</td>
+			</tr>
+		</thead>
+		<tbody id="cTabla">
+			
+		</tbody>
+	</table>
+
+	<script type="text/javascript">
+		var personas = [
+			{"codigo":"001", "nombre":"José Urbina", "activo":true},
+			{"codigo":"002", "nombre":"María Vargas", "activo":true},
+			{"codigo":"003", "nombre":"Pedro Meza", "activo":true},
+			{"codigo":"004", "nombre":"Mario Sacaza", "activo":true},
+			{"codigo":"005", "nombre":"Roberta Salgado", "activo":true}
+		];
+
+		function LlenarTabla()
+		{
+			var largo = personas.length;
+
+			for(var i = 0; i < largo; i++)
+			{
+				var fila = document.createElement("tr");
+				var campo1 = document.createElement("td");
+				campo1.innerHTML = personas[i]["codigo"];
+				var campo2 = document.createElement("td");
+				campo2.innerHTML = personas[i]["nombre"];
+				var campo3 = document.createElement("td");
+				campo3.innerHTML = personas[i]["activo"];
+
+				var campo4 = document.createElement("td");
+				var input = document.createElement("input");
+				input.type = "button";
+				input.className += "btnEliminar btn btn-danger";
+				input.value = "Eliminar";
+
+				campo4.appendChild(input);
+
+				fila.appendChild(campo1);
+				fila.appendChild(campo2);
+				fila.appendChild(campo3);
+				fila.appendChild(campo4);
+
+				document.getElementById('cTabla').appendChild(fila);
+			}
+		}
+
+		window.onload =  LlenarTabla();
+
+		document.getElementById('tablaP').addEventListener('click',function(e)
+		{
+			// Determino en que lugar se dio click dentro de la tabla
+			var elemento = e.target;
+
+			// i verified if it has the class
+			if(elemento.classList.contains('btnEliminar'))
+			{
+				// Obtengo el elemento padre del elemento evaluado y
+				// asi obtenego la fila en la que se dio click
+				// para obtener los valores de cada campo
+				var padre = elemento.parentElement.parentElement;
+				console.log('Código: ' + padre.cells[0].innerHTML);
+				console.log("Nombre Completo: " + padre.cells[1].innerHTML);
+
+				var estado = padre.cells[2].innerHTML;
+
+				console.log("Estado: " + (estado === "true" ? "Activo": "Inactivo"));
+			}
+			//	
+			//	    document.getElementById("IDdeTabla").rows[i].cells[j].innerText  
+		});
+	</script>
+</body>
+</html>
