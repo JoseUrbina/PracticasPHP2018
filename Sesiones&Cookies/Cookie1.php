@@ -1,20 +1,13 @@
 <!DOCTYPE html>
-<?php setcookie("Prueba", "Hello World!!");?>
+<?php 
+	setcookie("Prueba", "Hello World!!",time() + 3600, (dirname($_SERVER['PHP_SELF'])."/zona_exp"));
+?>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title></title>
 </head>
 <body>
-	<?php
-		if(isset($_COOKIE['Prueba']))
-		{
-			echo "Cookie: {$_COOKIE['Prueba']}";
-		}
-		else
-		{
-			echo "It hasn't create the cookie. Reload the page";
-		}
-	?>
+
 </body>
 </html>
