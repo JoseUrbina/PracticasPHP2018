@@ -12,7 +12,29 @@
 	$conexion->select_db(db_name) or die("It hasn't found the database");
 	$conexion->set_charset(db_charset);
 
-	$sql = "SELECT * FROM PRODUCTO";
+	$cantidad = 3;
+	$pagina = 1;
+
+	if(isset($_GET['pag']))
+	{
+		$pagina = $_GET['pag'];
+	}
+
+	$inicio = ($pagina-1)*$cantidad;
+
+	$sql_total = "SELECT * FROM PRODUCTO";
+	$r = $conexion->prepare($sql_total);
+	$r->execute();
+
+	// These functions are used together store_result() and num_rows
+	$r->store_result();
+	$numRegistros = $r->num_rows;
+
+	$totalPaginas = ceil($numRegistros / $cantidad);
+
+	$r->close();
+
+	$sql = "SELECT * FROM PRODUCTO LIMIT $inicio,$cantidad";
 
 	// $resultados = $conexion->query($sql);
 	// 
@@ -26,6 +48,13 @@
 </head>
 <body>
 	<a href="new.php"><button>Add</button></a>
+	<br>
+	<br>
+	<br>
+
+	<label>Numero de registros: <?php echo $numRegistros;?></label><br>
+	<label>Página <?php echo "{$pagina} de {$totalPaginas}";?></label><br><br>
+
 	<table>
 		<thead>
 			<tr>
@@ -70,6 +99,17 @@
 				$resultados->close();
 				$conexion->close();
 			?>
+
+			<tr>
+				<td>
+					<?php
+						for($i=1;$i<=$totalPaginas;$i++)
+						{
+							echo "<a href='?pag={$i}'>{$i}</a>";
+						}
+					?>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 </body>
