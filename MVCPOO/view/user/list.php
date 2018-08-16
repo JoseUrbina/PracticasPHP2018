@@ -25,6 +25,16 @@
 				</td>
 			</tr>
 		<?php }?>
+		<tr>
+			<td>
+				<?php
+					for($i=1;$i<=$totalPaginas;$i++)
+					{
+						echo "<a href='?pag={$i}'>{$i}</a>";
+					}
+				?>
+			</td>
+		</tr>
 	</tbody>
 </table>
 
