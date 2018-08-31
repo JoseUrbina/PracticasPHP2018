@@ -1,5 +1,5 @@
 <?php 
-	class Persona
+	/* class Persona
 	{
 		public static function Message($m)
 		{
@@ -21,5 +21,7 @@
 
 	$nombreClase::Message("Hello World!");
 
-	call_user_func([$nombreClase, "ShowName"], "José Antonio");
+	call_user_func([$nombreClase, "ShowName"], "José Antonio"); */
+
+	echo dirname($_SERVER['PHP_SELF']);
 ?>
