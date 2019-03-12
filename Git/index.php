@@ -15,7 +15,8 @@
 					console.log([jqXHR, status]);
 					
 					//$("#res").html(response.autos[2].marca[2].submarca);
-					$("#res").html(response.empleados[0].name);
+					//$("#res").html(response.empleados[0].name);
+					alert(response.empleados[0].name);
 				})
 				.fail((jqXHR, status) => console.log([jqXHR, status]));
 			});
