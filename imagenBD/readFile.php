@@ -39,7 +39,7 @@
 		echo "Id: {$Id}  -  Tipo: {$Tipo}<br><br>";
 
 		// data : type of image; base64 -> en este formato esta codificado el campo tipo blob
-		// base64_encode() : decodificar los bytes para obtener la iimagen y colocarla
+		// base64_encode() : decodificar los bytes para obtener la imagen y colocarla
 		// en la etiqueta img
 		echo "<img src='data:image/jpeg; base64, " . base64_encode($Contenido) . "'>";
 	?>
