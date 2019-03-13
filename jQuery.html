@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JQUERY</title>
+	<style>
+		.cuadro
+		{
+			display:inline-block;
+			vertical-align:top;
+			width:300px;
+		}
+	</style>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<input type="text" id="txtSearch"><input type="button" id="btnSearch" value="Search">
+	<hr>
+	<div id="imagenes"></div>
+
+	<script>
+		$(document).ready(function(){
+			$("#btnSearch").on("click", (event) => {
+				let texto = "";
+				let search = $("#txtSearch").val();
+				let divImage = $("#imagenes");
+
+				divImage.text("Cargando...");
+
+				$.getJSON(`https://api.flickr.com/services/feeds/photos_public.gne?tags=${search}&tagmode=any&format=json&jsoncallback=?`)
+				.done(response => {
+					//console.log(response);
+					for(let image of response.items)
+					{
+						texto += "<div class='cuadro'>";
+						texto += "<img src='" + image.media.m + "'/>"
+						texto += "</div>";					
+					}
+
+					divImage.html($(texto));
+				})
+				.fail((jqXHR, status) => console.log([jqXHR, status]));
+			});
+		});
+	</script>
+</body>
+</html>
