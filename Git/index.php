@@ -17,7 +17,7 @@
 					
 					//$("#res").html(response.autos[2].marca[2].submarca);
 					$("#res").html(response.empleados[0].name);
-					alert('Successfull');
+					console.log(response.autos[2].marca[2].submarca);
 				})
 				.fail((jqXHR, status) => console.log([jqXHR, status]));
 			});
