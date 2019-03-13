@@ -12,7 +12,7 @@
 			{
 				$.getJSON("objectoJson.php")
 				.done((response, status, jqXHR) => {
-					console.log([jqXHR, status]);
+					//console.log([jqXHR, status]);
 					
 					//$("#res").html(response.autos[2].marca[2].submarca);
 					$("#res").html(response.empleados[0].name);
