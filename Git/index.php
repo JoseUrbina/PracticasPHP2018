@@ -14,10 +14,11 @@
 				$.getJSON("objectoJson.php")
 				.done((response, status, jqXHR) => {
 					console.log([jqXHR, status]);
-					
+					console.log(response.autos[2].marca[2].submarca);
+	
 					//$("#res").html(response.autos[2].marca[2].submarca);
 					$("#res").html(response.empleados[0].name);
-					console.log(response.autos[2].marca[2].submarca);
+					alert('Successfull!');
 				})
 				.fail((jqXHR, status) => console.log([jqXHR, status]));
 			});
